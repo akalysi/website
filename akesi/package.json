@@ -1,0 +1,10 @@
+{
+    "type": "module",
+    "dependencies": {
+        "bad-words": "^4.0.0",
+        "express": "^5.1.0",
+        "http": "^0.0.1-security",
+        "socket.io": "^4.8.1",
+        "sqlite3": "^5.1.7"
+    }
+}

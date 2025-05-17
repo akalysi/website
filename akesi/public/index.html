@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/#ns">
+    <head>
+        <title>akesi</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    
+        <meta property="og:title" content="akesi">
+        <meta property="og:description" content="cream soda dr pepper flavored programmer">
+        
+        <link rel="stylesheet" href="/style.css">
+        <link rel="icon" href="/favicon.png">
+        
+        <script src="https://kit.fontawesome.com/cb13a337b3.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+        <script>
+            console.log("hey console user");
+
+            const socket = io();
+
+            socket.on("clients_update", (count) => {
+                var number = document.querySelector("#onlinecount span");
+                number.innerHTML = count;
+            });
+
+            socket.on("note_update", (txt, user) => {
+                if(txt == "") { txt = "null"; }
+                if(user == "") { user = "anonymous"; }
+                document.querySelector("#note").innerText = `"${txt}" - ${user}`;
+            });
+
+            function note_edit() {
+                var inputxt = document.querySelector("#notediv input[txt]");
+                var inputuser = document.querySelector("#notediv input[user]");
+                socket.emit("note_edit", inputxt.value, inputuser.value);
+            }
+
+            var konamiflag = false;
+            function konami(src) {
+                if(!konamiflag) console.log("cheater");
+
+                let flour_flower = new Audio("/steakpants.mp3");
+                flour_flower.play();
+
+                document.querySelector("div.tint").classList.add("PARTY");
+                konamiflag = false;
+            }
+
+            var chord_lastkey = -1;
+            document.addEventListener("keydown", (event) => {
+                if(chord_lastkey == -1 && event.keyCode == 38) {chord_lastkey = "UPARROW_1"}
+                else if(chord_lastkey == "UPARROW_1" && event.keyCode == 38) {chord_lastkey = "UPARROW_2"}
+                else if(chord_lastkey == "UPARROW_2" && event.keyCode == 40) {chord_lastkey = "DOWNARROW_1"}
+                else if(chord_lastkey == "DOWNARROW_1" && event.keyCode == 40) {chord_lastkey = "DOWNARROW_2"}
+                else if(chord_lastkey == "DOWNARROW_2" && event.keyCode == 37) {chord_lastkey = "LEFTARROW_1"}
+                else if(chord_lastkey == "LEFTARROW_1" && event.keyCode == 39) {chord_lastkey = "RIGHTARROW_1"}
+                else if(chord_lastkey == "RIGHTARROW_1" && event.keyCode == 37) {chord_lastkey = "LEFTARROW_2"}
+                else if(chord_lastkey == "LEFTARROW_2" && event.keyCode == 39) {chord_lastkey = "RIGHTARROW_2"}
+                else if(chord_lastkey == "RIGHTARROW_2" && event.keyCode == 66) {chord_lastkey = "B"}
+                else if(chord_lastkey == "B" && event.keyCode == 65) {chord_lastkey = "A"; konamiflag=true;konami()} // success
+                else {chord_lastkey = -1} // fail
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="tint"></div>
+        <p id="onlinecount"><i class="fa-solid fa-globe"></i> <span>0</span> online</p>
+
+        <div class="introduction">
+            <h1>akesi</h1>
+            <p>cream soda dr pepper flavored programmer</p>
+            <p>i'll put projects and tests on here</p>
+        </div><br><br>
+
+        <div id="divofdivs" style="text-align:center;">
+            <div id="reverseddiv" class="div">
+                <h1>Reversed</h1>
+                
+                <p>
+                    <p>a game i made to learn unity</p>
+                    <span onclick="window.open('https://github.com/imakesi/ReversedCards', '_blank');" style="cursor: pointer;">
+                        <i class="fa-brands fa-github"></i>&nbsp;&nbsp;repository
+                    </span>&nbsp;&nbsp;
+
+                    <span onclick="window.open('https://imakesi.itch.io/reversed', '_blank');" style="cursor: pointer;">
+                        <i class="fa-brands fa-itch-io"></i>&nbsp;&nbsp;game
+                    </span>
+                </p>
+            </div><br><br>
+
+            <div id="numbersdiv" class="div">
+                <h1>0123456789.</h1>
+
+                <p>
+                    <p>an esolang i made, also called "numbers"</p>
+
+                    <span onclick="window.open('https://github.com/imakesi/numbers')" style="cursor: pointer;">
+                        <i class="fa-brands fa-github"></i>&nbsp;&nbsp;repository
+                    </span>&nbsp;&nbsp;
+
+                    <button class="button" disabled>
+                        IDE (coming soon)
+                    </button>
+                </p>
+            </div><br><br>
+
+            <div id="notediv" class="div"><p id="note"></p>
+                <p style="font-size:1rem;">a note you can write, max 75 characters</p>
+                <input txt placeholder="update note" class="input">&nbsp;<input user placeholder="your username" class="input"><br>
+                <button class="button" onclick="note_edit();">submit</button><br><br>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer">
+                <h1>&lt;footer&gt;</h1>
+
+                <button class="button" id="donate" onclick="window.open('https://buymeacoffee.com/imakesi', '_blank');">
+                    ☕ buy me a coffee
+                </button>
+            </div>
+        </footer>
+    </body>
+</html>

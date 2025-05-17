@@ -1,0 +1,133 @@
+/* all */
+
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Fira+Code:wght@300..700&display=swap");
+:root {
+    --bgpink1: #ffceff;
+    --bgpink2: #ffb4ff;
+    --akesipink: #ffa0dc;
+    --colorblack: #1a1016; /* Fun Fact! This is 10% value, when akesipink is 100%. */
+
+    --fonts: 1.2rem "Alata", sans-serif;
+    --fontscode: 1.2rem "Fira Code", monospace;
+}
+
+@keyframes tint {
+    0% { background-color: var(--bgpink1); }
+    25% { background-color: var(--bgpink2); }
+    50% { background-color: var(--akesipink); }
+    75% { background-color: var(--bgpink1); }
+    100% { background-color: var(--bgpink2); }
+}
+
+@keyframes tintrgb {
+    0% { background-color: red; }
+    33% { background-color: lime; }
+    67% { background-color: blue; }
+    100% { background-color: red; }
+} div.tint.PARTY {
+    animation: tintrgb linear infinite 3s !important;
+}
+
+@keyframes bg {
+    from { background-position: 0 0; }
+    to { background-position: -1000px 0; }
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+
+    background: url("/background.png");
+    color: var(--colorblack);
+    
+    background-repeat: repeat;
+    animation: bg infinite 100s linear;
+
+    margin: 0px;
+    font: var(--fonts);
+
+    /*overflow-x: hidden;*/
+}
+
+div.tint {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.4;
+    width: 100vw;
+    min-height: 100vh;
+    z-index: 999;
+    animation: tint infinite linear 100s;
+    pointer-events: none;
+}
+
+.div {
+    margin: auto;
+    background: var(--bgpink2);
+    border: 3px solid var(--colorblack);
+    padding: 7.5px;
+    width: 100vh;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.input {
+    font: var(--fonts);
+    font-size: 1rem;
+    border: 2px solid var(--colorblack);
+}
+
+.button {
+    cursor: pointer;
+    background: white;
+    color: var(--colorblack);
+    border: none;
+    border-radius: 5px;
+    font: var(--fonts);
+    font-size: 1rem;
+    box-shadow: 3px 3px var(--colorblack);
+    transition-duration: 0.3s;
+} .button:active {
+    box-shadow: 0px 0px;
+    transform: translateY(3px);
+} .button:active:disabled {
+    box-shadow: 3px 3px var(--colorblack);
+    transform: none;
+} .button:disabled { cursor: not-allowed; }
+
+#divofdivs { padding-bottom: 15%; }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    background: var(--bgpink1);
+    width: 100%;
+    height: 20vh;
+} .footer { margin: 30px; }
+.footer h1 { font-size: 7.5vh; }
+.footer #donate {
+    position: absolute;
+    right: 2.5%;
+    bottom: 20%;
+    font-size: 1.3rem;
+    box-shadow: 5px 5px var(--colorblack);
+} .footer #donate:active {
+    box-shadow: 0px 0px;
+    transform: translateY(5px);
+}
+
+/* main page */
+
+.introduction {
+    font-size: 1.3rem;
+    margin: 30px;
+}
+
+#onlinecount {
+    text-align: right;
+    position: absolute;
+    top: 2.5vh;
+    right: 5vh;
+}
