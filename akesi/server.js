@@ -34,46 +34,22 @@ app.get("/", (q, r) => { r.sendFile(
 /* raw files */
 app.get("/style.css", (q, r) => { r.set("Content-Type", "text/css"); r.sendFile(
     path.join(__dirname, "public", "style.css")
-); }); app.get("/background.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
-    path.join(__dirname, "public", "background.png")
-); }); app.get("/favicon.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
+); });
+app.get("/backgroundlight.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
+    path.join(__dirname, "public", "backgroundlight.png")
+); }); app.get("/backgrounddark.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
+    path.join(__dirname, "public", "backgrounddark.png")
+); }); 
+app.get("/favicon.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
     path.join(__dirname, "public", "favicon.png")
-); }); app.get("/steakpants.mp3", (q, r) => { r.set("Content-Type", "audio/mpeg"); r.sendFile(
-    path.join(__dirname, "public", "steakpants.mp3")
 ); });
 
-/* database & sockets */
-
-db.serialize(() => {
-    db.run("CREATE TABLE IF NOT EXISTS last_note (id INTEGER PRIMARY KEY CHECK (id = 1), author TEXT, value TEXT)");
-    db.run("INSERT OR IGNORE INTO last_note (id, author, value) VALUES (1, '', '')");
-});
-
 io.on("connection", (socket) => {
-    console.log(`connection, ahhhhh ${socket.id}\n${io.sockets.sockets.size} client(s) on here\n`);
-
-    io.emit("clients_update", io.sockets.sockets.size);
+    io.emit("onlineupdate", io.sockets.sockets.size);
     socket.on("disconnect", () => {
-        console.log(`${socket.id} was a coward and left\nwe now only have ${io.sockets.sockets.size} client(s)\n`);
-        io.emit("clients_update", io.sockets.sockets.size);
+        io.emit("onlineupdate", io.sockets.sockets.size);
     });
-
-    socket.on("note_edit", (txt, user) => {
-        txt = profanityFilter.clean(txt.substring(0,75));
-        user = profanityFilter.clean(user.substring(0,30));
-        db.serialize(() => {
-            db.run("UPDATE last_note SET author = ?, value = ? WHERE id = 1", [user, txt]);
-        });
-
-        io.emit("note_update", txt, user);
-    });
-    
-    db.get("SELECT * FROM last_note WHERE id = 1", [], (err, row) => {
-        if (row) { socket.emit("note_update", row.value, row.author); }
-    });    
 });
-
-/* end */
 
 process.on("SIGINT", () => {
     console.log("bye bye");
