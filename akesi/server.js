@@ -27,22 +27,17 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 /* pages */
-app.get("/", (q, r) => { r.sendFile(
-    path.join(__dirname, "public", "index.html")
-); });
+app.get("/", (q, r) => { r.sendFile(path.join(__dirname, "public", "index.html")); });
+
+/* mobile pages */
+app.get("/mobile", (q, r) => { r.sendFile(path.join(__dirname, "public", "mobile", "mobile.html")); });
 
 /* raw files */
-app.get("/style.css", (q, r) => { r.set("Content-Type", "text/css"); r.sendFile(
-    path.join(__dirname, "public", "style.css")
-); });
-app.get("/backgroundlight.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
-    path.join(__dirname, "public", "backgroundlight.png")
-); }); app.get("/backgrounddark.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
-    path.join(__dirname, "public", "backgrounddark.png")
-); }); 
-app.get("/favicon.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(
-    path.join(__dirname, "public", "favicon.png")
-); });
+app.get("/style.css", (q, r) => { r.set("Content-Type", "text/css"); r.sendFile(path.join(__dirname, "public", "style.css")); });
+app.get("/mobilestyle.css", (q, r) => { r.set("Content-Type", "text/css"); r.sendFile(path.join(__dirname, "public", "mobile", "mobilestyle.css")); });
+app.get("/backgroundlight.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(path.join(__dirname, "public", "images", "backgroundlight.png")); });
+app.get("/backgrounddark.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(path.join(__dirname, "public", "images", "backgrounddark.png")); }); 
+app.get("/favicon.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(path.join(__dirname, "public", "images", "favicon.png")); });
 
 io.on("connection", (socket) => {
     io.emit("onlineupdate", io.sockets.sockets.size);

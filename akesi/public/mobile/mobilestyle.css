@@ -1,0 +1,14 @@
+:root {
+    --fontsize: 1.25rem !important;
+}
+
+body {
+    margin: 15px !important;
+} h1 {
+    margin: 5px !important;
+}
+
+#online {
+    top: 0 !important;
+    right: 2.5vh;
+}

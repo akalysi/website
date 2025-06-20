@@ -1,5 +1,3 @@
-/* all */
-
 @import url("https://fonts.googleapis.com/css2?family=Alata&family=Fira+Code:wght@300..700&display=swap");
 :root {
     --akesi: #ffa0dc;
@@ -20,8 +18,9 @@
 }
 
 @keyframes bg {
-    from { background-position: 0 0; }
-    to { background-position: -1000px 0; }
+    0% { background-position: 0 0; }
+    50% { background-position: -5000px 0; }
+    100% { background-position: 0 0; }
 }
 
 body {
@@ -35,13 +34,13 @@ body {
     color: var(--darkesi);
 
     background-repeat: repeat;
-    animation: bg infinite 30s linear;
+    animation: bg infinite 150s linear;
 
     overflow-x: hidden;
 }
 
 #online {
     position: absolute;
-    top: 3vh;
+    top: -1.5vh;
     right: 5vh;
 }
