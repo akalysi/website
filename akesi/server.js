@@ -1,4 +1,4 @@
-/* AKESI: THE WEBSITE */
+/* AKALYSI: THE WEBSITE */
 /* init */
 
 import express from "express";
@@ -38,6 +38,7 @@ app.get("/mobilestyle.css", (q, r) => { r.set("Content-Type", "text/css"); r.sen
 app.get("/backgroundlight.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(path.join(__dirname, "public", "images", "backgroundlight.png")); });
 app.get("/backgrounddark.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(path.join(__dirname, "public", "images", "backgrounddark.png")); }); 
 app.get("/favicon.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(path.join(__dirname, "public", "images", "favicon.png")); });
+app.get("/akalysi.png", (q, r) => { r.set("Content-Type", "image/png"); r.sendFile(path.join(__dirname, "public", "images", "akalysi.png")); });
 
 io.on("connection", (socket) => {
     io.emit("onlineupdate", io.sockets.sockets.size);
