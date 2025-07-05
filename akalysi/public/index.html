@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/#ns">
+    <head>
+        <title>akesi</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    
+        <meta property="og:title" content="akalysi">
+        <meta property="og:description" content="creation">
+        <meta property="og:image" content="/favicon.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:alt" content="the profile picture of akalysi">
+
+        <link rel="stylesheet" href="/style.css">
+        <link rel="icon" href="/favicon.png">
+        
+        <script src="https://kit.fontawesome.com/cb13a337b3.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+        <script>
+            console.log("hey console user\nhave a good stay");
+            window.isMobile=function(){return(window.matchMedia("(any-hover:none)").matches)};
+            if(window.isMobile()) { window.location.replace("/mobile"); }
+
+            const socket = io();
+
+            socket.on("onlineupdate", (count) => {
+                document.querySelector("#online span").textContent = count;
+            });
+
+            function copycode(id) {
+                var text = document.getElementById(id).parentElement.getAttribute("copytext");
+                navigator.clipboard.writeText(text);
+                alert("copied, boss!");
+            }
+        </script>
+    </head>
+
+    <body>
+        <p id="online" style="font-size:2.5rem;"><i class="fa-solid fa-globe"></i>&nbsp;<span>0</span></p>
+        <h1 style="margin-left:30px;font-size:4.5rem;">akalysi</h1>
+        <img id="akalysi" src="/akalysi.png" height="45" width="201">
+        <pre class="code" copytext='akalysi = Akalysi()
+
+akalysi.settings(username="akalysi", description="lizard programmer and esolanger")
+akalysi.init()
+gen = akalysi.gen(type="website")
+gen.ideate("async:deploy")'><span id="psuedocodecopycodeicon" onclick="copycode('psuedocodecopycodeicon')"><i class="fa-solid fa-copy"></i></span> 1   <span class="ctext">akalysi</span> = <span class="cgreen">Akalysi</span><span class="cgold">()</span>
+ 2    
+ 3   <span class="ctext">akalysi</span>.<span class="cyellow">settings</span><span class="cgold">(</span><span class="ctext">username</span>=<span class="corange">"akalysi"</span>, <span class="ctext">description</span>=<span class="corange">"lizard programmer and esolanger"</span><span class="cgold">)</span>
+ 4   <span class="ctext">akalysi</span>.<span class="cyellow">init</span><span class="cgold">()</span>
+ 5   <span class="ctext">gen</span> = <span class="ctext">akalysi</span>.<span class="cyellow">gen</span><span class="cgold">(</span><span class="ctext">type</span>=<span class="corange">"website"</span><span class="cgold">)</span>
+ 6   <span class="ctext">gen</span>.<span class="cyellow">ideate</span><span class="cgold">(</span><span class="corange">"async:deploy"</span><span class="cgold">)</span></pre>
+    </body>
+</html>

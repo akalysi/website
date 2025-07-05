@@ -14,16 +14,13 @@
         <meta property="og:image:alt" content="the profile picture of akesi">
 
         <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="/mobilestyle.css">
         <link rel="icon" href="/favicon.png">
         
         <script src="https://kit.fontawesome.com/cb13a337b3.js" crossorigin="anonymous"></script>
         <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
         <script>
-            console.log("hey console user");
+            // thank you xobyte!
             window.isMobile=function(){return(window.matchMedia("(any-hover:none)").matches)};
-            
-            if(!window.isMobile()) { window.location.replace("/"); }
 
             const socket = io();
 
@@ -35,7 +32,6 @@
 
     <body>
         <p id="online"><i class="fa-solid fa-globe"></i>&nbsp;<span>0</span></p>
-        <h1 style="margin-left:30px;">akesi</h1>
-        <p>hi mobile user</p>
+        <h1 style="margin-left:30px;font-size:4.5rem;">akalysi</h1>
     </body>
 </html>

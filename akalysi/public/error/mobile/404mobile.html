@@ -7,21 +7,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     
-        <meta property="og:title" content="akalysi">
+        <meta property="og:title" content="akesi">
         <meta property="og:description" content="creation">
         <meta property="og:image" content="/favicon.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:alt" content="the profile picture of akesi">
 
         <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/mobilestyle.css">
         <link rel="icon" href="/favicon.png">
         
         <script src="https://kit.fontawesome.com/cb13a337b3.js" crossorigin="anonymous"></script>
         <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
         <script>
-            console.log("hey console user\nhave a good stay");
+            console.log("hey console user");
             window.isMobile=function(){return(window.matchMedia("(any-hover:none)").matches)};
-            if(window.isMobile()) { window.location.replace("/mobile"); }
+            
+            if(!window.isMobile()) { window.location.replace("/{req_url}"); }
 
             const socket = io();
 
@@ -34,7 +36,6 @@
     <body>
         <p id="online"><i class="fa-solid fa-globe"></i>&nbsp;<span>0</span></p>
         <h1 style="margin-left:30px;">akalysi</h1>
-        <img id="akalysi" src="/akalysi.png">
-        <p></p>
+        <p>this page, /{req_url}, wasn't found! oh noes! oh gosh golly gee!<br><br><a href="/">main page</a></p>
     </body>
 </html>
